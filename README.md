@@ -9,9 +9,25 @@ The data set used in this project contains real messages that were sent during d
 
 The Project is divided in the following Sections:
 
-1. ETL Pipeline to extract data from source, clean data and save them in a proper databse structure
-2. Machine Learning Pipeline to train a model able to classify text messages in categories
-3. Web App to show model results in real time.
+#### 1. ETL Pipeline
+This is a data cleaning pipeline that:
+- Loads the messages and categories datasets
+- Merges the two datasets
+- Cleans the data
+- Stores it in a SQLite database
+
+#### 2. ML Pipeline
+This is a machine learning pipeline that:
+
+- Loads data from the SQLite database
+- Splits the dataset into training and test sets
+- Builds a text processing and machine learning pipeline
+- Exports the final model as a pickle file
+
+#### 3. Flask Web App
+This project includes a web app where an emergency worker can input a new message and get classification results in several categories. 
+The web app will also display visualizations of the data.
+
 
 ## Prerequisites
 1. Update python(anaconda) `$ conda update python`
