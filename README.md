@@ -61,7 +61,7 @@ The web app will also display visualizations of the data.
 	tqdm==4.48.2
 	Werkzeug==1.0.1
 
-4. Following command can also be used to update all libraries in python.
+4. Instaed of using above requirements.txt file, following command can also be used to update all libraries in python.
 `$ python -m pip install --upgrade pip`
 
 ### Instructions:
