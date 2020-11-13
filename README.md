@@ -30,11 +30,17 @@ The web app will also display visualizations of the data.
 
 
 ## Prerequisites
-1. Update python(anaconda) `$ conda update python`
+1. Update python(anaconda) 
+
+`$ conda update python`
+
 2. Ctreate virtual envirnment(for windows).
+
 `$ python -m venv disaster_project`
 `$ disaster_project\Scripts\activate`
+
 3. Install dependencies.
+
 `$ pip install -r requirements.txt`
 
 #### Dependencies
@@ -62,6 +68,7 @@ The web app will also display visualizations of the data.
 	Werkzeug==1.0.1
 
 4. Instaed of using above requirements.txt file, following command can also be used to update all libraries in python.
+
 `$ python -m pip install --upgrade pip`
 
 ### Instructions:
