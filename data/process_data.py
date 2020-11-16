@@ -23,7 +23,7 @@ from sqlalchemy import create_engine
 
 
 # load messages dataset
-messages = pd.read_csv('C:/Users/Nehaa/project4/data/disaster_messages.csv')
+messages = pd.read_csv(messages_filepath)
 messages.head()
 
 
@@ -31,7 +31,7 @@ messages.head()
 
 
 # load categories dataset
-categories = pd.read_csv('C:/Users/Nehaa/project4/data/disaster_categories.csv')
+categories = pd.read_csv(categories_filepath)
 categories.head()
 
 
@@ -202,11 +202,6 @@ cursor.close()
 engine = create_engine(dbpath)
 df.to_sql(table, engine, index=False)
 
-
-# ### 8. Use this notebook to complete `etl_pipeline.py`
-# Use the template file attached in the Resources folder to write a script that runs the steps above to create a database based on new datasets specified by the user. Alternatively, you can complete `etl_pipeline.py` in the classroom on the `Project Workspace IDE` coming later.
-
-# In[ ]:
 
 
 
