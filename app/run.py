@@ -40,11 +40,11 @@ def tokenize(text):
     return lemmed
 
 # load data
-engine = create_engine('sqlite:///C:/Users/Nehaa/project/data/messages_categories.db')
+engine = create_engine('sqlite:///.../data/messages_categories.db')
 df = pd.read_sql_table('messages_categories', engine)
 
 # load model
-filename = 'C:/Users/Nehaa/project/models/random_forest_best.pkl'
+filename = '.../models/random_forest_best.pkl'
 model = joblib.load(filename)
 
 # index webpage displays cool visuals and receives user input text for model
