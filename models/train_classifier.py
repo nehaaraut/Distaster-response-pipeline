@@ -62,8 +62,8 @@ simplefilter(action='ignore', category=FutureWarning)
 
 
 # load data from database
-engine = create_engine('sqlite:///C:/Users/Nehaa/project4/messages_categories.db')
-df = pd.read_sql('messages_categories',con=engine)
+engine = create_engine('sqlite:/// + database_filepath)    #database = messages_categories.db
+df = pd.read_sql(table_name,con=engine)         #table_name = messages_categories  
 
 X = df['message']
 Y = df[df.columns[5:]]
@@ -315,20 +315,10 @@ model = new_model_pipeline()
 
 
 # save the model to disk
-filename = 'classifier.sav'
+filename = 'classifier.pkl'
 pickle.dump(model, open(filename, 'wb'))
  
-# some time later...
- 
-# load the model from disk
-# loaded_model = pickle.load(open(filename, 'rb'))
-# result = loaded_model.score(X_test, Y_test)
 
-
-# ### 10. Use this notebook to complete `train.py`
-# Use the template file attached in the Resources folder to write a script that runs the steps above to create a database and export a model based on a new dataset specified by the user.
-
-# In[ ]:
 
 
 
