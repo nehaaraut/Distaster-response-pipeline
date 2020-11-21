@@ -41,18 +41,26 @@ from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
 
 # load data from database
-engine = create_engine('sqlite:/// + database_filepath)    #database = messages_categories.db
-df = pd.read_sql(table_name,con=engine)         #table_name = messages_categories  
 
-X = df['message']
-Y = df[df.columns[5:]]   #required column_names
+
+def load_data(engine_name, table_name):
+    """load data from database
+    Args:
+        engine_name => Name of db engine to load
+        table_name => name of db table to read
+    Returns:
+        X => explanatory variable
+        Y => predictive variable
+    """
+    engine = create_engine('sqlite:///../data/{}.db'.format(engine_name))
+    df = pd.read_sql("SELECT * FROM {}".format(table_name), engine)
+    X = df['message']
+    Y = df
+    Y = Y.drop(Y.columns[:3], axis=1)
+    Y= Y.astype(int)
+    return X, Y
+
 X.head()
-
-df.columns  
-
-for c in Y.columns:
-    if len(Y[c].unique()) > 2:
-        print(c)
 Y.head()
 
 
