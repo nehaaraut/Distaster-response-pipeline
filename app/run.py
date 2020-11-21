@@ -44,7 +44,7 @@ engine = create_engine('sqlite:///.../data/messages_categories.db')
 df = pd.read_sql_table('messages_categories', engine)
 
 # load model
-filename = '.../models/random_forest_best.pkl'
+filename = '.../models/classifier.pkl'
 model = joblib.load(filename)
 
 # index webpage displays cool visuals and receives user input text for model
