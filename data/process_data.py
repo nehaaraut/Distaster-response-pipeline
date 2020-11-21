@@ -57,4 +57,4 @@ def save_data(df, database_filename):
         None
     """
     engine = create_engine('sqlite:///{}.db'.format(database_filename))
-    df.to_sql('disaster', engine, index=False, if_exists='replace')
+    df.to_sql('messages_categories', engine, index=False, if_exists='replace')
