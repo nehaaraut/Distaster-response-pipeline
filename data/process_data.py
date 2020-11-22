@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # ETL Pipeline Preparation
-
 
 # import libraries
 import pandas as pd
@@ -35,8 +30,8 @@ def load_data(f1_dir, f2_dir):
 
     return df
 
-f1 = 'C:/Users/Nehaa/Desktop/Disaster_Data/data/disaster_messages.csv'
-f2 = 'C:/Users/Nehaa/Desktop/Disaster_Data/data/disaster_categories.csv'
+f1 = '.../data/disaster_messages.csv'
+f2 = '.../data/disaster_categories.csv'
 
 data = load_data(f1, f2)
 
@@ -93,7 +88,7 @@ def clean_data(df):
 clean_df = clean_data(data)
 
 #Save the clean dataset into an sqlite database.
-dbpath = 'sqlite:///C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db'
+dbpath = 'sqlite:///.../data/messages_categories.db'
 table = 'messages_categories'
 engine = create_engine(dbpath)
 connection = engine.raw_connection()
