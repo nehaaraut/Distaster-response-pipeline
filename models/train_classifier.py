@@ -42,24 +42,22 @@ simplefilter(action='ignore', category=FutureWarning)
 
 # load data from database
 
-
-def load_data(engine_name, table_name):
+# load data from database
     """load data from database
     Args:
-        engine_name => Name of db engine to load
-        table_name => name of db table to read
+        engine_name => messages_categories
+        table_name => messages_categories
     Returns:
         X => explanatory variable
         Y => predictive variable
     """
-    engine = create_engine('sqlite:///../data/{}.db'.format(engine_name))
-    df = pd.read_sql("SELECT * FROM {}".format(table_name), engine)
-    X = df['message']
-    Y = df
-    Y = Y.drop(Y.columns[:3], axis=1)
-    Y= Y.astype(int)
-    return X, Y
-
+engine = create_engine('sqlite:///C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')
+df = pd.read_sql("messages_categories", con=engine)
+X = df['message']
+Y = df
+Y = Y.drop(Y.columns[:3], axis=1)
+Y= Y.astype(int)
+    
 X.head()
 Y.head()
 
