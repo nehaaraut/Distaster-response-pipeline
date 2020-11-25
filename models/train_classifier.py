@@ -41,17 +41,15 @@ from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
 
 # load data from database
-
-# load data from database
-    """load data from database
+"""load data from database
     Args:
         engine_name => messages_categories
         table_name => messages_categories
     Returns:
         X => explanatory variable
         Y => predictive variable
-    """
-engine = create_engine('sqlite:///C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')
+"""
+engine = create_engine('sqlite:///.../data/messages_categories.db')
 df = pd.read_sql("messages_categories", con=engine)
 X = df['message']
 Y = df
