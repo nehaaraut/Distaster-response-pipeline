@@ -49,13 +49,13 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 # load data
-engine = create_engine('sqlite:///C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')
+engine = create_engine('sqlite:///../data/messages_categories.db')
 df = pd.read_sql_table('messages_categories', engine)
 
-X, y, category_names = load_data('C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')
+X, y, category_names = load_data('../data/messages_categories.db')
 
 # load model
-filename = 'C:/Users/Nehaa/Desktop/Disaster_Data/models/random_forest_best.pkl'
+filename = '../models/random_forest_best.pkl'
 model = joblib.load(filename)
 
 # index webpage displays cool visuals and receives user input text for model
