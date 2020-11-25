@@ -21,30 +21,41 @@ simplefilter(action='ignore', category=FutureWarning)
 app = Flask(__name__)
 
 def tokenize(text):
-    # normalize text and remove punctuation
-    text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
-    
-    # tokenize text
+
     tokens = word_tokenize(text)
-    stop_words = stopwords.words("english")
-    words = [w for w in tokens if w not in stop_words]
-    
-    # Reduce words to their stems
-    stemmer = PorterStemmer()
-    stemmed = [stemmer.stem(w) for w in words]
-    
-    # Reduce words to their root form
     lemmatizer = WordNetLemmatizer()
-    lemmed = [lemmatizer.lemmatize(w) for w in stemmed]
+
+    clean_tokens = []
+    for tok in tokens:
+        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        clean_tokens.append(clean_tok)
+
+    return clean_tokens
+
+def load_data(database_filepath):
+    """ Load DataBase data into pandas DataFrames
+    :param str database_filepath:
+    :return: a pandas DataFrame with messages (X), a pandas DataFrame with categories (y) and a list of categories
+             names (categories_names)
+    """
+
+    engine = create_engine('sqlite:///' + database_filepath)
+    df = pd.read_sql('messages_categories', con = engine)
     
-    return lemmed
+    X = df['message']
+    Y = df[df.columns[4:]]
+    category_names = Y.columns
+    
+    return X, Y, category_names
 
 # load data
-engine = create_engine('sqlite:///.../data/messages_categories.db')
+engine = create_engine('sqlite:///C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')
 df = pd.read_sql_table('messages_categories', engine)
 
+X, y, category_names = load_data('C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')
+
 # load model
-filename = '.../models/classifier.pkl'
+filename = 'C:/Users/Nehaa/Desktop/Disaster_Data/models/random_forest_best.pkl'
 model = joblib.load(filename)
 
 # index webpage displays cool visuals and receives user input text for model
@@ -53,18 +64,20 @@ model = joblib.load(filename)
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    ### data for visualizing category counts.
+    label_sums = df.iloc[:, 4:].sum()
+    label_names = list(label_sums.index)
+    
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=label_names,
+                    y=label_sums
                 )
             ],
 
