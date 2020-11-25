@@ -56,7 +56,7 @@ def load_data(database_filepath):
     
     return X, Y, category_names
 
-X, Y, category_names = load_data('C:/Users/Nehaa/Desktop/Disaster_Data/data/messages_categories.db')    
+X, Y, category_names = load_data('../data/messages_categories.db')    
 X.head()
 Y.head()
 
@@ -76,7 +76,6 @@ def tokenize(text):
 
 for message in X[:]:
     tokens = tokenize(message)
-    print(tokens, '\n')
     
 # Build a machine learning pipeline
 pipeline = Pipeline([
